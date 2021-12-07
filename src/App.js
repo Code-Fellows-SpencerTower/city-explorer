@@ -9,14 +9,14 @@ export default class App extends Component {
     super(props);
     this.state = {
       city: '',
-      locationData: { display_name: 'Seattle' },
+      locationData: {},
       locationMap: ''
     }
   }
   // set state to cityinput
   handleSubmit = (event) => {
     event.preventDefault();
-    // getCityLocation as callback
+    // getLocationData as callback
     this.setState({ city: event.target.city.value }, this.getLocationData);
   }
 
@@ -24,10 +24,9 @@ export default class App extends Component {
     // query locationiq via axios
     console.log('City State: ' + this.state.city);
     let response = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.city}&format=json`);
+    console.log('Response: ' + response.data);
     this.setState({ locationData: response }, this.getCityMap);
 
-
-    console.log('Response: ' + this.state.locationData);
   }
 
   getCityMap = async () => {
