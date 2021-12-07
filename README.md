@@ -12,7 +12,7 @@ This app allows users to submit a city name and recieve the latitude, longitue, 
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-Technologies: Javascript, React, 
+Technologies: Javascript, React, Bootstrap, HTML5, CSS3, LocationIQ
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
