@@ -9,8 +9,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       city: '',
-      locationData: {},
-      locationMap: ''
+      locationData: {}
     }
   }
   // set state to cityinput
@@ -29,11 +28,13 @@ export default class App extends Component {
 
   }
 
-  getCityMap = async () => {
-    let cityMap = await axios.get(`https://us1.locationiq.com/v1/reverse.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&lat=47.6062&lon=122.3321&format=json`);
-    this.setState({ locationMap: cityMap });
-    console.log(typeof (cityMap));
-  }
+  // refactor to component
+  // getCityMap = async () => {
+  //   let cityMap = await axios.get(`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&center=${this.state.locationData.lat},${this.state.locationData.lon}&zoom=14`);
+  //   this.setState({ locationMap: cityMap });
+  //   console.log(cityMap);
+  //   console.log(this.state.locationMap);
+  // }
 
   // form for user request
   render() {
@@ -53,7 +54,7 @@ export default class App extends Component {
           : <p>Search a city to find it's coordinates</p>}
         <p>{this.state.locationData.lat}</p>
         <p>{this.state.locationData.lon}</p>
-        <img src={this.state.locationMap} />
+        <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&size=600x600&zoom=14&markers=${this.state.locationData.lat},${this.state.locationData.lon}|icon:large-blue-cutout&format=png`} />
       </div >
     )
   }
