@@ -24,14 +24,15 @@ export default class App extends Component {
     // query locationiq via axios
     console.log('City State: ' + this.state.city);
     let response = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.city}&format=json`);
-    console.log('Response: ' + response.data);
-    this.setState({ locationData: response }, this.getCityMap);
+    console.log(response.data[0]);
+    this.setState({ locationData: response.data[0] }, this.getCityMap);
 
   }
 
   getCityMap = async () => {
     let cityMap = await axios.get(`https://us1.locationiq.com/v1/reverse.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&lat=47.6062&lon=122.3321&format=json`);
     this.setState({ locationMap: cityMap });
+    console.log(typeof (cityMap));
   }
 
   // form for user request
@@ -47,11 +48,12 @@ export default class App extends Component {
             Explore!
           </Button>
         </Form>
-        {this.state.locationData.display_name ? <p>{this.state.locationData.display_name}</p> : <p>Search a city to find it's coordinates</p>}
+        {this.state.locationData.display_name ?
+          <p>{this.state.locationData.display_name}</p>
+          : <p>Search a city to find it's coordinates</p>}
         <p>{this.state.locationData.lat}</p>
         <p>{this.state.locationData.lon}</p>
         <img src={this.state.locationMap} />
-
       </div >
     )
   }
