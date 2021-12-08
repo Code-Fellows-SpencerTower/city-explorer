@@ -3,14 +3,14 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './App.css';
 import axios from 'axios';
+import Weather from './components/Weather';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       city: '',
-      locationData: {},
-      locationMap: ''
+      locationData: {}
     }
   }
   // set state to cityinput
@@ -24,14 +24,12 @@ export default class App extends Component {
     // query locationiq via axios
     console.log('City State: ' + this.state.city);
     let response = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.city}&format=json`);
-    console.log('Response: ' + response.data);
-    this.setState({ locationData: response }, this.getCityMap);
-
+    console.log(response.data[0]);
+    this.setState({ locationData: response.data[0] }, this.getCityMap);
   }
 
-  getCityMap = async () => {
-    let cityMap = await axios.get(`https://us1.locationiq.com/v1/reverse.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&lat=47.6062&lon=122.3321&format=json`);
-    this.setState({ locationMap: cityMap });
+  getWeatherData = async () => {
+
   }
 
   // form for user request
@@ -47,11 +45,13 @@ export default class App extends Component {
             Explore!
           </Button>
         </Form>
-        {this.state.locationData.display_name ? <p>{this.state.locationData.display_name}</p> : <p>Search a city to find it's coordinates</p>}
+        {this.state.locationData.display_name ?
+          <p>{this.state.locationData.display_name}</p>
+          : <p>Search a city to find it's coordinates</p>}
         <p>{this.state.locationData.lat}</p>
         <p>{this.state.locationData.lon}</p>
-        <img src={this.state.locationMap} />
-
+        <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&size=600x600&zoom=14&markers=${this.state.locationData.lat},${this.state.locationData.lon}|icon:large-blue-cutout&format=png`} />
+        <Weather />
       </div >
     )
   }
