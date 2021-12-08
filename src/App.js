@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './App.css';
 import axios from 'axios';
+import Weather from './components/Weather';
 
 export default class App extends Component {
   constructor(props) {
@@ -25,16 +26,11 @@ export default class App extends Component {
     let response = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.city}&format=json`);
     console.log(response.data[0]);
     this.setState({ locationData: response.data[0] }, this.getCityMap);
-
   }
 
-  // refactor to component
-  // getCityMap = async () => {
-  //   let cityMap = await axios.get(`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&center=${this.state.locationData.lat},${this.state.locationData.lon}&zoom=14`);
-  //   this.setState({ locationMap: cityMap });
-  //   console.log(cityMap);
-  //   console.log(this.state.locationMap);
-  // }
+  getWeatherData = async () => {
+
+  }
 
   // form for user request
   render() {
@@ -55,6 +51,7 @@ export default class App extends Component {
         <p>{this.state.locationData.lat}</p>
         <p>{this.state.locationData.lon}</p>
         <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&size=600x600&zoom=14&markers=${this.state.locationData.lat},${this.state.locationData.lon}|icon:large-blue-cutout&format=png`} />
+        <Weather />
       </div >
     )
   }
