@@ -28,10 +28,6 @@ export default class App extends Component {
     this.setState({ locationData: response.data[0] }, this.getCityMap);
   }
 
-  getWeatherData = async () => {
-
-  }
-
   // form for user request
   render() {
     return (
