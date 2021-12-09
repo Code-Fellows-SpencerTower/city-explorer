@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import './App.css';
 import axios from 'axios';
 import Weather from './components/Weather';
+import Main from './components/Main';
 import Error from './components/Error';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -59,24 +59,10 @@ export default class App extends Component {
     console.log(this.state.weatherData);
     return (
       <div>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control type="text" placeholder="Enter city" name="city" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Explore!
-          </Button>
-        </Form>
-        {/* if error with getLocationData query, display notification to user */}
-        {this.state.locationData.display_name ?
-          <p>{this.state.locationData.display_name}</p>
-          : <p>Search a city to find it's coordinates</p>}
+        <Main locationData={this.state.locationData} handleSubmit={this.handleSubmit} />
         {this.state.error && <Error city={this.state.city} />}
-        <p>{this.state.locationData.lat}</p>
-        <p>{this.state.locationData.lon}</p>
-        {this.state.locationData.lat && <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&size=600x600&zoom=14&markers=${this.state.locationData.lat},${this.state.locationData.lon}|icon:large-blue-cutout&format=png`} alt='' />}
         {/* if data in weatherData, send props into  */}
-        {this.state.weatherData.length > 0 && <Weather weatherData={this.state.weatherData} />}
+        {this.state.weatherData.length > 0 && <Weather weatherData={this.state.weatherData} error={this.state.error} />}
       </div >
     )
   }
