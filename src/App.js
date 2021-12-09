@@ -43,7 +43,7 @@ export default class App extends Component {
   }
 
   getWeatherData = async () => {
-    const weatherDataResp = await axios.get(`${process.env.REACT_APP_URL}/weather?city_name=${this.state.locationData.city_name}&lat=${this.state.locationData.lat}&lon=${this.state.locationData.lon}`);
+    const weatherDataResp = await axios.get(`${process.env.REACT_APP_URL}/weather?city_name=${this.state.city}&lat=${this.state.locationData.lat}&lon=${this.state.locationData.lon}`);
     this.setState({ weatherData: weatherDataResp.data });
   }
 
@@ -56,7 +56,6 @@ export default class App extends Component {
 
   // form for user request
   render() {
-    console.log(this.state.weatherData);
     return (
       <div>
         <Main locationData={this.state.locationData} handleSubmit={this.handleSubmit} />
