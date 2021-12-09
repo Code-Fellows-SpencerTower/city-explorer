@@ -13,7 +13,8 @@ export default class App extends Component {
       city: '',
       locationData: {},
       weatherData: [],
-      error: false
+      error: false,
+      movieArr: []
     }
   }
   // set state to cityinput
