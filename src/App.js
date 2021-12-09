@@ -42,15 +42,16 @@ export default class App extends Component {
     }
   }
 
-  getWeatherData = async () => {
-    const weatherDataResp = await axios.get(`${process.env.REACT_APP_URL}/weather?city_name=${this.state.city}&lat=${this.state.locationData.lat}&lon=${this.state.locationData.lon}`);
+  getWeatherData = async (city_name) => {
+    const weatherDataResp = await axios.get(`${process.env.REACT_APP_URL}/weather?city_name=${city_name}&lat=${this.state.locationData.lat}&lon=${this.state.locationData.lon}`);
     this.setState({ weatherData: weatherDataResp.data });
   }
 
   componentDidUpdate() {
     // runs every re-render, get live weather if lat and lon exist in state
     if (this.state.locationData.lat && this.state.locationData.lon) {
-      this.getWeatherData();
+      const city_name = this.state.locationData.display_name.split(',')[0];
+      this.getWeatherData(city_name);
     }
   }
 
