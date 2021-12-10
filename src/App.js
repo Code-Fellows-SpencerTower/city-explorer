@@ -13,7 +13,8 @@ export default class App extends Component {
       city: '',
       locationData: {},
       weatherData: [],
-      error: false
+      error: false,
+      // movieArr: []
     }
   }
   // set state to cityinput
@@ -46,6 +47,10 @@ export default class App extends Component {
     const weatherDataResp = await axios.get(`${process.env.REACT_APP_URL}/weather?city_name=${city_name}&lat=${this.state.locationData.lat}&lon=${this.state.locationData.lon}`);
     this.setState({ weatherData: weatherDataResp.data });
   }
+
+  // getMovieData = async () => {
+  //   const movieData = await axios.get()
+  // }
 
   componentDidUpdate() {
     // runs every re-render, get live weather if lat and lon exist in state
