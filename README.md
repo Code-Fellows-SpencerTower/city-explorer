@@ -59,9 +59,9 @@ Finish time: _____
 Actual time needed to complete: 
 
 
-## Lab 08 
+## Lab 08
 
-### Data Flow:
+### Data Flow: Labs 08 & 09
 
 ![Lab 08 Data Flow](img/lab08_dataflow.png)
 

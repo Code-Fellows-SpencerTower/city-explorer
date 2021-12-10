@@ -8,7 +8,7 @@ export default class Weather extends Component {
         <h3 style={{ color: 'blue' }}>Weather Forecast</h3>
         <ul>
           {/* && evaluates left side, if true, evaluates right side */}
-          {this.props.weatherData.map(loc => <li>{loc.date}: {loc.description}</li>)}
+          {this.props.weatherData.map((loc, idx) => <li key={loc.idx}>{loc.date}: {loc.description}</li>)}
         </ul>
       </div>
     )
