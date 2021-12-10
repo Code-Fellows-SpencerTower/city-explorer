@@ -5,7 +5,7 @@ import Weather from './components/Weather';
 import Main from './components/Main';
 import Error from './components/Error';
 import Movies from './components/Movies';
-import { Row } from 'react-bootstrap';
+import Row from 'react-bootstrap/Row';
 
 
 export default class App extends Component {
@@ -68,6 +68,7 @@ export default class App extends Component {
     }
   }
 
+
   // form for user request
   render() {
     return (
@@ -78,8 +79,10 @@ export default class App extends Component {
         {this.state.weatherData.length > 0 && <Weather weatherData={this.state.weatherData} error={this.state.error} />}
         {/* map movies into Movies component and render */}
         <Row sm={1} md={2} lg={5}>
-          {this.state.movieData.length > 0 && this.state.movies.map(movie => <Movies movie={movie} />)}
+          {console.log('Movie Data:', this.state.movieData)}
+          {this.state.movieData.length > 0 && this.state.movieData.map(movie => <Movies movie={movie} />)}
         </Row>
+        {/* this.state.movies.map(movie =>  */}
 
       </div >
     )
