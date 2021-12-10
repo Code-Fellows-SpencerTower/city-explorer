@@ -4,6 +4,8 @@ import axios from 'axios';
 import Weather from './components/Weather';
 import Main from './components/Main';
 import Error from './components/Error';
+import Movies from './components/Movies';
+import { Row } from 'react-bootstrap';
 
 
 export default class App extends Component {
@@ -14,7 +16,7 @@ export default class App extends Component {
       locationData: {},
       weatherData: [],
       error: false,
-      // movieArr: []
+      movieData: []
     }
   }
   // set state to cityinput
@@ -44,10 +46,15 @@ export default class App extends Component {
   }
 
   getWeatherData = async (city_name) => {
-    const weatherDataResp = await axios.get(`${process.env.REACT_APP_URL}/weather?city_name=${city_name}&lat=${this.state.locationData.lat}&lon=${this.state.locationData.lon}`);
-    this.setState({ weatherData: weatherDataResp.data });
+    const weatherDataRes = await axios.get(`${process.env.REACT_APP_URL}/weather?city_name=${city_name}&lat=${this.state.locationData.lat}&lon=${this.state.locationData.lon}`);
+    this.setState({ weatherData: weatherDataRes.data });
   }
 
+  getMovieData = async (city_name) => {
+    const movieRes = await axios.get(`${process.env.REACT_APP_URL}/movies?city_name=${city_name}`);
+    this.setState({ movieData: movieRes.data });
+    console.log(this.state.movieData);
+  }
   // getMovieData = async () => {
   //   const movieData = await axios.get()
   // }
@@ -57,6 +64,7 @@ export default class App extends Component {
     if (this.state.locationData.lat && this.state.locationData.lon) {
       const city_name = this.state.locationData.display_name.split(',')[0];
       this.getWeatherData(city_name);
+      this.getMovieData(city_name);
     }
   }
 
@@ -68,6 +76,11 @@ export default class App extends Component {
         {this.state.error && <Error city={this.state.city} />}
         {/* if data in weatherData, send props into  */}
         {this.state.weatherData.length > 0 && <Weather weatherData={this.state.weatherData} error={this.state.error} />}
+        {/* map movies into Movies component and render */}
+        <Row sm={1} md={2} lg={5}>
+          {this.state.movieData.length > 0 && this.state.movies.map(movie => <Movies movie={movie} />)}
+        </Row>
+
       </div >
     )
   }
