@@ -22,8 +22,50 @@ Technologies: Javascript, React, Bootstrap, HTML5, CSS3, LocationIQ
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 Michael Metcalf
+Jacob Choi
+Kellen Linse
+
+## Lab 06 
+
+### Data Flow:
+
+![Lab 06 Data Flow](img/lab06_dataflow.png)
 
 Name of feature: Locations
+
+Estimate of time needed to complete: 1.5 hrs
+
+Start time: 2:30
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+
+## Lab 07 
+
+### Data Flow:
+
+![Lab 07 Data Flow](img/lab07_dataflow.png)
+
+Name of feature: city-explorer-api weather Query
+
+Estimate of time needed to complete: 3 hrs
+
+Start time: 3:00
+
+Finish time: _____
+
+Actual time needed to complete: 
+
+
+## Lab 08 
+
+### Data Flow:
+
+![Lab 08 Data Flow](img/lab08_dataflow.png)
+
+Name of feature: 
 
 Estimate of time needed to complete: 1.5 hrs
 
