@@ -59,9 +59,9 @@ Finish time: _____
 Actual time needed to complete: 
 
 
-## Lab 08 
+## Lab 08
 
-### Data Flow:
+### Data Flow: Labs 08 & 09
 
 ![Lab 08 Data Flow](img/lab08_dataflow.png)
 
@@ -72,5 +72,3 @@ Estimate of time needed to complete: 1.5 hrs
 Start time: 2:30
 
 Finish time: _____
-
-Actual time needed to complete: _____
