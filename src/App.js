@@ -33,7 +33,8 @@ export default class App extends Component {
       let response = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.city}&format=json`);
       console.log(response.data[0]);
       // this.getWeatherData(this.state.city);
-      this.setState({ locationData: response.data[0] });
+      this.setState({ locationData: response.data[0] }, this.getAllData);
+
       this.setState({ error: false });
     } catch (error) {
       console.log('There was an error with your request.');
@@ -71,7 +72,7 @@ export default class App extends Component {
     }
   }
 
-  componentDidUpdate() {
+  getAllData = () => {
     // runs every re-render, get live weather if lat and lon exist in state
     if (this.state.locationData.lat && this.state.locationData.lon) {
       const city_name = this.state.locationData.display_name.split(',')[0];
