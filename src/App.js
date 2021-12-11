@@ -52,6 +52,8 @@ export default class App extends Component {
       this.setState({ error: false });
     } catch (error) {
       this.setState({ error: true });
+      this.setState({ locationData: {} });
+      this.setState({ weatherData: [] });
 
     }
   }
@@ -64,11 +66,10 @@ export default class App extends Component {
       this.setState({ error: false });
     } catch (error) {
       this.setState({ error: true })
+      this.setState({ locationData: {} });
+      this.setState({ weatherData: [] });
     }
   }
-  // getMovieData = async () => {
-  //   const movieData = await axios.get()
-  // }
 
   componentDidUpdate() {
     // runs every re-render, get live weather if lat and lon exist in state
