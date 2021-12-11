@@ -5,7 +5,6 @@ import Weather from './components/Weather';
 import Main from './components/Main';
 import Error from './components/Error';
 import Movies from './components/Movies';
-import Row from 'react-bootstrap/Row';
 
 
 export default class App extends Component {
@@ -91,10 +90,7 @@ export default class App extends Component {
         {/* if data in weatherData, send props into  */}
         {this.state.weatherData.length > 0 && <Weather weatherData={this.state.weatherData} error={this.state.error} />}
         {/* map movies into Movies component to render */}
-        <Row sm={1} md={2} lg={5}>
-          {console.log('Movie Data:', this.state.movieData)}
-          {this.state.movieData.length > 0 && this.state.movieData.map(movie => <Movies movie={movie} />)}
-        </Row>
+        <Movies movieData={this.state.movieData} />
       </div >
     )
   }

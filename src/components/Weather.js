@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import WeatherDay from './WeatherDay';
+
 
 export default class Weather extends Component {
 
@@ -8,7 +10,7 @@ export default class Weather extends Component {
         <h3 style={{ color: 'blue' }}>Weather Forecast</h3>
         <ul>
           {/* && evaluates left side, if true, evaluates right side */}
-          {this.props.weatherData.map((loc, idx) => <li key={loc.idx}>{loc.date}: {loc.description}</li>)}
+          {this.props.weatherData.map((day, idx) => <WeatherDay key={idx} day={day} />)}
         </ul>
       </div>
     )
