@@ -5,7 +5,6 @@ import Weather from './components/Weather';
 import Main from './components/Main';
 import Error from './components/Error';
 import Movies from './components/Movies';
-import Row from 'react-bootstrap/Row';
 
 
 export default class App extends Component {
@@ -33,7 +32,8 @@ export default class App extends Component {
       let response = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.city}&format=json`);
       console.log(response.data[0]);
       // this.getWeatherData(this.state.city);
-      this.setState({ locationData: response.data[0] });
+      this.setState({ locationData: response.data[0] }, this.getAllData);
+
       this.setState({ error: false });
     } catch (error) {
       console.log('There was an error with your request.');
@@ -52,6 +52,8 @@ export default class App extends Component {
       this.setState({ error: false });
     } catch (error) {
       this.setState({ error: true });
+      this.setState({ locationData: {} });
+      this.setState({ weatherData: [] });
 
     }
   }
@@ -64,13 +66,12 @@ export default class App extends Component {
       this.setState({ error: false });
     } catch (error) {
       this.setState({ error: true })
+      this.setState({ locationData: {} });
+      this.setState({ weatherData: [] });
     }
   }
-  // getMovieData = async () => {
-  //   const movieData = await axios.get()
-  // }
 
-  componentDidUpdate() {
+  getAllData = () => {
     // runs every re-render, get live weather if lat and lon exist in state
     if (this.state.locationData.lat && this.state.locationData.lon) {
       const city_name = this.state.locationData.display_name.split(',')[0];
@@ -89,10 +90,7 @@ export default class App extends Component {
         {/* if data in weatherData, send props into  */}
         {this.state.weatherData.length > 0 && <Weather weatherData={this.state.weatherData} error={this.state.error} />}
         {/* map movies into Movies component to render */}
-        <Row sm={1} md={2} lg={5}>
-          {console.log('Movie Data:', this.state.movieData)}
-          {this.state.movieData.length > 0 && this.state.movieData.map(movie => <Movies movie={movie} />)}
-        </Row>
+        <Movies movieData={this.state.movieData} />
       </div >
     )
   }
