@@ -8,7 +8,6 @@ export default class Movies extends Component {
     return (
       <div>
         <Row sm={1} md={2} lg={5}>
-          {console.log('Movie Data:', this.state.movieData)}
           {this.props.movieData.length > 0 && this.props.movieData.map(movie => <Movie movie={movie} />)}
         </Row>
       </div>

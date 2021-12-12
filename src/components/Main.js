@@ -27,8 +27,7 @@ export default class Main extends Component {
           this.props.locationData.display_name && <p>Latitude: {this.props.locationData.lat}</p>
         }
         {
-          this.props.locationData.display_name &&
-          <p>Longitude: {this.props.locationData.lon}</p>
+          this.props.locationData.display_name && <p>Longitude: {this.props.locationData.lon}</p>
         }
         {this.props.locationData.lat && <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&size=600x600&zoom=12&markers=${this.props.locationData.lat},${this.props.locationData.lon}|icon:large-blue-cutout&format=png`} alt='' />}
       </div>
